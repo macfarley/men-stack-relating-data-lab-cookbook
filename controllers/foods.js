@@ -5,16 +5,20 @@ const User = require('../models/user.js');
 
 //foods routes
 // fetch all items
-router.get('/', (req, res) => {
-    User.findById(req.user._id, (err, user) => {
-        if (err) {
-            console.log(err);
+router.get('/:userId/foods', async (req, res) => {
+    const userInDatabase = await User.findById(req.params.userId);
+    console.log(req.params);    
+    if (!userInDatabase) {
+            console.log('Error: User does not exist');
             res.redirect('/');
         } else {
-            res.render('foods/index.ejs', { foods: user.foods });
+            console.log(userInDatabase);
+            if(!userInDatabase.pantry) {
+                userInDatabase.pantry = [];
+            }
+            res.render('foods/index.ejs', { foods: userInDatabase.pantry });
         }
     });
-  });
 // fetch a new item form
 router.get('/new', (req, res) => {
     res.render('foods/new.ejs');

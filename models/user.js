@@ -13,7 +13,7 @@ const userSchema = mongoose.Schema({
     type: String,
     required: Boolean,
   },
-  pantry: foodSchema, // Embedding foodSchema directly into userSchema
+  pantry: [foodSchema], // Embedding foodSchema directly into userSchema
 });
 
 const User = mongoose.model('User', userSchema);

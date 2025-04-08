@@ -12,7 +12,12 @@
     <% if (foods.length > 0) { %>
         <ul>
             <% foods.forEach(food => { %>
-                <li><%= food.name %></li>
+          <li>
+              <%= food.name %>
+              <form action="/foods/<%= food._id %>?_method=DELETE" method="POST" style="display:inline;">
+            <button type="submit">Delete</button>
+              </form>
+          </li>
             <% }) %>
         </ul>
     <% } else { %>
