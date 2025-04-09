@@ -7,14 +7,13 @@
 </head>
 <body>
     <%- include('../partials/_navbar.ejs') %>
-    <h1>Add a new food item</h1>    
-    <form action="/users/new" method="POST">
-    <div>
-        <label for="name">Food Name:</label>
+    <h1>Update Food Information</h1>    
+    <form action="/users/<%= user._id %>/foods/<%= food %>/edit?_method=PUT" method="POST">
+    <div class="newData">
+      <label for="name"></label>
         <input type="text" id="name" name="name" required>
     </div>
-  
-    <button type="submit">Add Food</button>
+    <button type="submit">Update Food</button>
     </form>
 
 </body>

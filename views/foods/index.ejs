@@ -9,14 +9,17 @@
     <%- include('../partials/_navbar.ejs') %>
     <h1>Welcome to my Pantry</h1>
     <h2>Food Items</h2>
+    <a href="/users/new">Add Something New to the Pantry</a>
     <% if (foods.length > 0) { %>
         <ul>
             <% foods.forEach(food => { %>
           <li>
               <%= food.name %>
-              <form action="/foods/<%= food._id %>?_method=DELETE" method="POST" style="display:inline;">
+              <form action="/users/foods/<%= food._id %>?_method=DELETE" method="POST" style="display:inline;">
             <button type="submit">Delete</button>
               </form>
+              <form action="/users/<%= user._id %>/foods/<%= food._id %>/edit" method="GET" style="display:inline;">
+                <button type="submit">Edit</button>
           </li>
             <% }) %>
         </ul>
